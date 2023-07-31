@@ -1,0 +1,112 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 1.5vw;
+   
+   
+    
+}
+section{
+    position: relative;
+    padding-left:40%;
+    
+}
+.container{
+   position: absolute;
+    margin-top: 100%;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px black;
+}
+
+
+
+
+input{
+ background-color:wheat ;
+ border: 0;
+
+}
+h1{
+    position: relative;
+    color: black;
+    text-align: center;
+    margin-top: 0;
+    font-size: 70px;
+    padding-bottom: 0;
+    
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    width: 50vh;
+    margin-left: 1vh;   
+}
+a:hover{
+    background-color: #1abc9c;
+    color: white;
+}
+.left{
+    width: 100%;
+    height: 50%;
+  
+}
+
+
+.content h2{
+    font-size: 40px;
+
+}
+.form ul{
+    list-style-type: none;
+    padding-left: 9vh;
+   
+    
+}
+
+
+.content button{
+    border-radius: 20px;
+    color: white;
+    background-color: #5bd8bf;
+    border: 0;
+    margin-left: 1vh;
+}
+.content button:hover{
+    background-color: aquamarine;
+}
+
+.error{
+    color: red;
+    width: 300px;
+    text-align: justify;
+   padding-left: 10px;
+   text-align: center;
+   font-size: small;
+}
+li{
+    padding-left: 5vh;
+    padding: 1vh;
+    width: 20vh;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+input{
+   padding-left: 2vh;
+    width: 30vh;
+    height: 5vh;
+    border-radius: 5px;
+}
+button{
+    padding-left: 2vh;
+    width: 30vh;
+    height: 5vh;
+    border-radius: 5px;
+}
+
