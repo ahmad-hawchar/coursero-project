@@ -19,6 +19,7 @@ body {
   background-color: #1abc9c;
 }
 
+
 .search a {
   float: left;
   display: block;
@@ -153,6 +154,7 @@ img {
     left: 52%;
   position: absolute;
   font-size: 1.5vw;
+  font-size: medium;
   
 }
 .desc {

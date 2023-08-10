@@ -155,7 +155,6 @@
             $query = "SELECT * FROM post 
             WHERE id_t IN (SELECT id FROM user WHERE ((Fname LIKE '%$Fname%' OR Lname LIKE '%$Lname%') AND gender LIKE'$gender%') AND category LIKE '%$cat%') AND id NOT IN(SELECT id FROM featured)
             ORDER BY $filter;";
-
         } else {
             //if no name have been specified
             if ($gender == '') {
@@ -184,6 +183,12 @@
             }
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //we only show featured posts while on the first page! therefor i need to send the page that we are currently on by url
+           if(isset($_GET['search-content'])){
+            $search=$_GET['search-content'];
+           }
+           else{
+            $search="";
+           }
             if ($nbrpage == 1) {
 
                 for ($i = 0; $i < $frows; $i++) {
@@ -198,37 +203,39 @@
                     echo "<span class='row3'><div class='date'> posted on $frow[Date] </div>";
                     echo "<div class='category'> category: $frow[category] </div>";
                     echo "<div class='chatbutton'><a  href='chat.php?receiver-id=$frow[Id_t]'> chat ICON  </a></div></span>";
-                    $favorited = $frow['Id'];
-                    $favoritedid = $_SESSION['id'];
-                    $favquery = "select * from fav where id_post=$favorited and id_student=$favoritedid ";
-                    $resultat = mysqli_query($con, $favquery);
-                    if (mysqli_num_rows($resultat) > 0) {
-                        $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
-                        $reviewres = mysqli_query($con, $reviewquery);
-                        if (mysqli_num_rows($reviewres) > 0) {
-                            $reviewres = mysqli_fetch_assoc($reviewres);
-                            if ($reviewres['rating'] == 'up') {
-                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
-                            } else {
-                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
+                    if (isset($_SESSION['id'])) {
+                        $favorited = $frow['Id'];
+                        $favoritedid = $_SESSION['id'];
+                        $favquery = "select * from fav where id_post=$favorited and id_student=$favoritedid ";
+                        $resultat = mysqli_query($con, $favquery);
+                        if (mysqli_num_rows($resultat) > 0) {
+                            $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
+                            $reviewres = mysqli_query($con, $reviewquery);
+                            if (mysqli_num_rows($reviewres) > 0) {
+                                $reviewres = mysqli_fetch_assoc($reviewres);
+                                if ($reviewres['rating'] == 'up') {
+                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
+                                } else {
+                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
+                                }
                             }
-                        }
-                        echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
-                    } else {
-                        $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
-                        $reviewres = mysqli_query($con, $reviewquery);
-                        if (mysqli_num_rows($reviewres) > 0) {
-                            $reviewres = mysqli_fetch_assoc($reviewres);
-                            if ($reviewres['rating'] == 'up') {
-                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '><img src='star-regular.svg' /></a></div></td></tr></table> ";
-                            } else {
-                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
-                            }
+                            echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
                         } else {
-                            echo "</div></td><td class='fav'><div class='rating-button'><a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                            $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
+                            $reviewres = mysqli_query($con, $reviewquery);
+                            if (mysqli_num_rows($reviewres) > 0) {
+                                $reviewres = mysqli_fetch_assoc($reviewres);
+                                if ($reviewres['rating'] == 'up') {
+                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '><img src='star-regular.svg' /></a></div></td></tr></table> ";
+                                } else {
+                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                                }
+                            } else {
+                                echo "</div></td><td class='fav'><div class='rating-button'><a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$frow[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                            }
                         }
                     }
-
+                    else{echo"</tr></table>";}
 
                 }
 
@@ -247,63 +254,7 @@
                         echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
                         echo "<div class='category'> category: $row[category] </div>";
                         echo "<div class='chatbutton'><a  href='chat.php?receiver-id=$row[Id_t]'> chat ICON  </a></div></span>";
-                        $favorited = $row['Id'];
-                        $favoritedid = $_SESSION['id'];
-                        $favquery = "select * from fav where id_post=$favorited and id_student=$favoritedid ";
-                        $resultat = mysqli_query($con, $favquery);
-                        if (mysqli_num_rows($resultat) > 0) {
-                            $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
-                            $reviewres = mysqli_query($con, $reviewquery);
-                            if (mysqli_num_rows($reviewres) > 0) {
-                                $reviewres = mysqli_fetch_assoc($reviewres);
-                                if ($reviewres['rating'] == 'up') {
-                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
-                                } else {
-                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
-                                }
-                            } else {
-                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
-                            }
-                        } else {
-                            $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
-                            $reviewres = mysqli_query($con, $reviewquery);
-                            if (mysqli_num_rows($reviewres) > 0) {
-                                $reviewres = mysqli_fetch_assoc($reviewres);
-                                if ($reviewres['rating'] == 'up') {
-                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
-                                } else {
-                                    echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
-                                }
-                            } else {
-                                echo "</div></td><td class='fav'><div class='rating-button'><a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
-                            }
-                        }
-
-
-                    }
-                }
-            }
-            
-
-
-
-            //-------------------------------------------------------------------------------------------------------------------------------------------------
-            else { //if we are on a page different than page 1
-                //cant i just start fetching from line 15 and get 15 posts
-                for ($i = 0; $i < $rows; $i++) {
-                    $row = mysqli_fetch_assoc($result);
-                    $query = "select * from user where id='$row[Id_t]' ";
-                    $teacher = mysqli_query($con, $query);
-                    if ($teacher) {
-                        if ($i > (($nbrpage - 1) * 15 - 1 - $frows) && ($i < (($nbrpage - 1) * 15 - $frows) + 15)) {
-                            $teacher = mysqli_fetch_assoc($teacher);
-                            echo "<table><tr><td><div class='post'> ";
-                            echo "<span class='row1'><div class='picture'> <img src='$row[picture]' alt='$row[picture]' > </div>";
-                            echo "<div class='names'> First name:$teacher[Fname] <br> Last name:$teacher[Lname] <br>price:$row[price] $/hr</div></span>";
-                            echo "<div class='desc'> $row[Description] </div>";
-                            echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
-                            echo "<div class='category'> category: $row[category] </div>";
-                            echo "<div class='chatbutton'><a  href='chat.php?receiver-id=$row[Id_t]'> chat ICON  </a></div></span>";
+                        if (isset($_SESSION['id'])) {
                             $favorited = $row['Id'];
                             $favoritedid = $_SESSION['id'];
                             $favquery = "select * from fav where id_post=$favorited and id_student=$favoritedid ";
@@ -327,7 +278,7 @@
                                 if (mysqli_num_rows($reviewres) > 0) {
                                     $reviewres = mysqli_fetch_assoc($reviewres);
                                     if ($reviewres['rating'] == 'up') {
-                                        echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                                        echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
                                     } else {
                                         echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
                                     }
@@ -335,6 +286,69 @@
                                     echo "</div></td><td class='fav'><div class='rating-button'><a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
                                 }
                             }
+
+                        }
+                        else{echo"</tr></table>";}
+                    }
+                }
+            }
+
+
+
+
+            //-------------------------------------------------------------------------------------------------------------------------------------------------
+            else { //if we are on a page different than page 1
+                //cant i just start fetching from line 15 and get 15 posts
+                for ($i = 0; $i < $rows; $i++) {
+                    $row = mysqli_fetch_assoc($result);
+                    $query = "select * from user where id='$row[Id_t]' ";
+                    $teacher = mysqli_query($con, $query);
+                    if ($teacher) {
+                        if ($i > (($nbrpage - 1) * 15 - 1 - $frows) && ($i < (($nbrpage - 1) * 15 - $frows) + 15)) {
+                            $teacher = mysqli_fetch_assoc($teacher);
+                            echo "<table><tr><td><div class='post'> ";
+                            echo "<span class='row1'><div class='picture'> <img src='$row[picture]' alt='$row[picture]' > </div>";
+                            echo "<div class='names'> First name:$teacher[Fname] <br> Last name:$teacher[Lname] <br>price:$row[price] $/hr</div></span>";
+                            echo "<div class='desc'> $row[Description] </div>";
+                            echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
+                            echo "<div class='category'> category: $row[category] </div>";
+                            echo "<div class='chatbutton'><a  href='chat.php?receiver-id=$row[Id_t]'> chat ICON  </a></div></span>";
+                            if (isset($_SESSION['id'])) {
+                                $favorited = $row['Id'];
+                                if (isset($_SESSION['id'])) {
+                                    $favoritedid = $_SESSION['id'];
+                                    $favquery = "select * from fav where id_post=$favorited and id_student=$favoritedid ";
+                                    $resultat = mysqli_query($con, $favquery);
+                                    if (mysqli_num_rows($resultat) > 0) {
+                                        $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
+                                        $reviewres = mysqli_query($con, $reviewquery);
+                                        if (mysqli_num_rows($reviewres) > 0) {
+                                            $reviewres = mysqli_fetch_assoc($reviewres);
+                                            if ($reviewres['rating'] == 'up') {
+                                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
+                                            } else {
+                                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
+                                            }
+                                        } else {
+                                            echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-solid.svg' /></a></div></td></tr></table> ";
+                                        }
+                                    } else {
+                                        $reviewquery = "SELECT * FROM review_post where post_id=$favorited and student_id=$favoritedid  ";
+                                        $reviewres = mysqli_query($con, $reviewquery);
+                                        if (mysqli_num_rows($reviewres) > 0) {
+                                            $reviewres = mysqli_fetch_assoc($reviewres);
+                                            if ($reviewres['rating'] == 'up') {
+                                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                                            } else {
+                                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                                            }
+                                        } else {
+                                            echo "</div></td><td class='fav'><div class='rating-button'><a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                                        }
+                                    }
+                                }
+                            }
+                            else{echo"</tr></table>";}
                         }
                     }
                 }
