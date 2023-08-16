@@ -24,10 +24,13 @@ include("connection.php");
 <header>
       <nav>
       <div class="logo">
-      <h1>LOGO</h1>
+      <h1 >LOGO</h1>
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
+          <li>
+            <a href="homepage.php">Home</a>
+          </li>
           <li>
             <a href="recentChat.php">Chat</a>
           </li>
@@ -38,8 +41,19 @@ include("connection.php");
             <a href="myads.php">My ads</a>
           </li>
           <li>
-          <a href="#">Settings</a>
+            <a href="mycourses.php">My courses</a>
           </li>
+          
+            <?php  if(isset($_SESSION['role']) ){
+             if($_SESSION['role']==1){
+
+            
+              echo" <li><a href='createpost.php'>add a post</a>";
+              echo"</li><li><a href='createcourse.php'>add a course</a></li>";
+            }
+          }
+            ?>
+          
           <?php
         if (isset($_SESSION["isloggedin"])) {
 
@@ -61,7 +75,6 @@ include("connection.php");
     </header>
     <!-- Script -->
     <script src="script.js"></script>
-  
     <div class="chat-list">
         <?php
         $query = "SELECT * FROM user where id IN(SELECT DISTINCT id_receiver FROM messages where id_sender=$id) OR id IN(

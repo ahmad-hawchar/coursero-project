@@ -22,7 +22,7 @@ if (!$_SESSION["isloggedin"]) {
             <h1>LOGO</h1>
         </div>
         <div class="title">
-            MY ADS
+            My Courses
         </div>
         <div class="homepage"><a href="homepage.php">GO BACK TO HOMEPAGE</a></div>
     </header>
@@ -48,7 +48,7 @@ if (!$_SESSION["isloggedin"]) {
                     $teacher = mysqli_fetch_assoc($teacher);
                     echo "<table><tr><td><div class='post'> ";
                     echo "<div class='row1-container'><span class='row1'><div class='picture'> <img src='$row[thumbnail]' alt='$row[thumbnail]' > </div>";
-                    echo "<div class='names'> course name:$row[name] <br> creator name:$teacher[Fname] $teacher[Lname] <br> Price: $row[price]</div></span></div>";
+                    echo "<div class='names'> course name:$row[name] <br> creator name:$teacher[Fname] $teacher[Lname] <br> Price: $row[price]$</div></span></div>";
                     echo "<div class='desc'> $row[Description] </div>";
                     echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
                     echo "<div class='category'> category: $row[category] </div>";

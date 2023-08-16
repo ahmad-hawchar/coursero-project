@@ -47,10 +47,8 @@
                 <li><input type="text" name="lname" placeholder="  Last Name" required></li>
                 <input class="date " type="date" name="date" placeholder="  Date of Birth" required></li>
                 <li><input type="text" name="username" placeholder="  Username" required></li>
-                <li><input type="password" name="password" id="pass" placeholder="  Password" onblur="verifypass()"
-                        required></li>
-                <li><input type="password" name="passwrd" id="cpass" placeholder=" Confirm Password"
-                        onblur="checkpass()" required></li>
+                <li><input type="password" name="password" id="pass" placeholder="  Password"  required></li>
+                <li><input type="password" name="passwrd" id="cpass" placeholder=" Confirm Password"onblur="checkpass()" required></li>
                 <li class="radio">
                     <span class="p">Student</span>
                     <input type="radio" name="role" value="2" required>
@@ -66,7 +64,7 @@
                     <span class="p">Female</span>
                     <input type="radio" name="gender" value="female" required>
                 </li>
-                <li><button id='button' onclick="checkpass()verifypass()">Signup</button></li>
+                <li><button id='button' onclick="checkpass()">Signup</button></li>
                 <li><a href="login.php">Already have an account? Signin now!</a></li>
             </ul>
         </form>
@@ -90,22 +88,9 @@
 
             }
             //verify password pattern
-            function verifypass() {
-                let pass = document.getElementById("pass").value
-                let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,30}$/
-                let msg = document.getElementById("error")
-                msg.innerHTML = ""
-                if (pass.match(pattern)) {
-                    msg.innerHTML = ""
-                    return true
-                }
-                else {
-                    msg.innerHTML = "Password should be: (8+)character , 1+ (A),1+(a),1+(@), 1+(1)"
-                    return false
-                }
-            }
+
              
-            if(!verifypass()||!checkpass()){
+            if(!checkpass()){
                 document.getElementById("button").disabled=true;
             }
             else

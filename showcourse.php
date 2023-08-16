@@ -1,7 +1,7 @@
 <?php
  session_start();
  require_once('connection.php');
- if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
+ if ($_SESSION['isloggedin'] != 'true') {
     header("Location:login.php");
     
 }
@@ -13,9 +13,12 @@ if(!isset($_GET['course_id'])){
 else{
 $course_id=$_GET['course_id'];
 $query="SELECT * FROM subscribe WHERE id_course=$course_id AND id_student=$id";
+$query1="SELECT * FROM course WHERE id=$course_id AND Id_t=$id";
 $result=mysqli_query($con,$query);
+$result1=mysqli_query($con,$query1);
 $num=mysqli_num_rows($result);
-if($num==1){
+$num1=mysqli_num_rows($result1);
+if($num==1||$num1==1){
     header("location:showcourse2.php?course_id=$course_id");
 }
 }
@@ -33,10 +36,13 @@ if($num==1){
 <header>
       <nav>
       <div class="logo">
-      <h1>LOGO</h1>
+      <h1 >LOGO</h1>
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
+          <li>
+            <a href="homepage.php">Home</a>
+          </li>
           <li>
             <a href="recentChat.php">Chat</a>
           </li>
@@ -47,8 +53,19 @@ if($num==1){
             <a href="myads.php">My ads</a>
           </li>
           <li>
-          <a href="#">Settings</a>
+            <a href="mycourses.php">My courses</a>
           </li>
+          
+            <?php  if(isset($_SESSION['role']) ){
+             if($_SESSION['role']==1){
+
+            
+              echo" <li><a href='createpost.php'>add a post</a>";
+              echo"</li><li><a href='createcourse.php'>add a course</a></li>";
+            }
+          }
+            ?>
+          
           <?php
         if (isset($_SESSION["isloggedin"])) {
 

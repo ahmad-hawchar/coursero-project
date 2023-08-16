@@ -32,10 +32,13 @@ require_once("connection.php");
 <header>
       <nav>
       <div class="logo">
-      <h1>LOGO</h1>
+      <h1 >LOGO</h1>
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
+          <li>
+            <a href="homepage.php">Home</a>
+          </li>
           <li>
             <a href="recentChat.php">Chat</a>
           </li>
@@ -44,6 +47,9 @@ require_once("connection.php");
           </li>
           <li>
             <a href="myads.php">My ads</a>
+          </li>
+          <li>
+            <a href="mycourses.php">My courses</a>
           </li>
           
             <?php  if(isset($_SESSION['role']) ){

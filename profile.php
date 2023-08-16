@@ -25,10 +25,13 @@ else{
 <header>
       <nav>
       <div class="logo">
-      <h1>LOGO</h1>
+      <h1 >LOGO</h1>
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
+          <li>
+            <a href="homepage.php">Home</a>
+          </li>
           <li>
             <a href="recentChat.php">Chat</a>
           </li>
@@ -39,8 +42,19 @@ else{
             <a href="myads.php">My ads</a>
           </li>
           <li>
-          <a href="#">Settings</a>
+            <a href="mycourses.php">My courses</a>
           </li>
+          
+            <?php  if(isset($_SESSION['role']) ){
+             if($_SESSION['role']==1){
+
+            
+              echo" <li><a href='createpost.php'>add a post</a>";
+              echo"</li><li><a href='createcourse.php'>add a course</a></li>";
+            }
+          }
+            ?>
+          
           <?php
         if (isset($_SESSION["isloggedin"])) {
 
@@ -62,7 +76,6 @@ else{
     </header>
     <!-- Script -->
     <script src="script.js"></script>
-  
   <div class="profile-container">
         <?php
         
@@ -70,6 +83,7 @@ else{
             echo "<div class='profilelink'>";
             echo '<a href="logout.php">Logout</a>';
             echo '<a href="edit_profile.php">Edit Profile</a>';
+            echo '<a href="changepassword.php">Change Password</a>';
             echo'</div>';
         }
         ?>
@@ -101,7 +115,7 @@ else{
 
         
         <?php
-
+       if($_SESSION['role']==1){
         $query1="SELECT * FROM post WHERE Id_t=$id AND Id=(SELECT MAX(Id) FROM post WHERE Id_t=$id ) ";
         $result1=mysqli_query($con,$query1);
         $num1=mysqli_num_rows($result1);
@@ -113,13 +127,16 @@ else{
         echo '<p>Last Uploaded Post:</p>';
         echo '<p>Title:<a href="showpost.php?post_id='.$row1['Id'].'">  ' . $lastUploadedPostTitle . '</a></p>';
         echo '<p>Date: ' . $lastUploadedPostDate . '</p>';
+        echo"<a href='myads.php'><button>More</button></a>";
       }
       else
-      echo"No uploaded posts<br>"
+      echo"No uploaded posts<br>";
+       }
         ?>
 
       
         <?php
+        if($_SESSION['role']==1){
         $query2="SELECT * FROM course WHERE Id_t=$id AND id=(SELECT MAX(id) FROM course WHERE Id_t=$id ) ";
         $result2=mysqli_query($con,$query2);
         $num2=mysqli_num_rows($result2);
@@ -131,9 +148,11 @@ else{
         echo '<p>Last Uploaded Course:</p>';
         echo '<p>Title:<a href="showcourse.php?course_id='.$row2['id'].'"> ' . $lastUploadedCourseTitle . '</a></p>';
         echo '<p>Date: ' . $lastUploadedCourseDate . '</p>';
+        echo"<a href='mycourses.php'><button>More</button></a>";
         }
         else
         echo"No uploaded courses";
+      }
         ?>
     </div>
 

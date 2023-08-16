@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_SESSION['isloggedin'] != 'true' ) {
+if ($_SESSION['isloggedin'] != 'true') {
     header("Location:login.php");
     return;
 }
@@ -13,7 +13,7 @@ $row=mysqli_fetch_assoc($result);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Profile</title>
+    <title>Change Password</title>
     <link rel="stylesheet" type="text/css" href="edit_profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
@@ -74,26 +74,25 @@ $row=mysqli_fetch_assoc($result);
     </header>
     <!-- Script -->
     <script src="script.js"></script>
-  
     <div class="edit-profile-container">
-        <h2>Edit Profile</h2>
-        <form action="update_profile.php" method="post" enctype="multipart/form-data">
+        <h2>Change Password</h2>
+        <form action="update_password.php" method="post" enctype="multipart/form-data">
             <?php
-            echo"<label for='profile-picture'>Profile Picture:</label>";
-            echo"<input type='file' name='pic' accept='image/*'>";
-            echo"<label for='first-name'>First Name:</label>";
-            echo"<input type='text' id='first-name' name='first_name' value='".$row['Fname']."'>";
-            echo"<label for='last-name'>Last Name:</label>";
-            echo"<input type='text' id='last-name' name='last_name' value='".$row['Lname']."'>";
-            echo"<label for='username'>Username:</label>";
-            echo"<input type='text' id='username' name='username' value='".$row['username']."'>";
-            echo"<input type='submit' value='Update Profile'>";
+            echo"<h4 id='error' style='color:red;'></h4>";
+            echo"<label for='old_pass'>Old Password:</label>";
+            echo"<input type='password' id='old_pass' name='old_pass' >";
+            echo"<label for='new_pass'>New Password:</label>";
+            echo"<input type='password' id='new_pass' name='new_pass' >";
+            echo"<label for='cpass'>Repeat Password:</label>";
+            echo"<input type='password'  onblur='checkpass() ' id='cpass' name='cpass' >";
+            echo"<input type='submit' id='button' onclick='checkpass()' value='Update Password' disabled> ";
             if(isset($_GET['error'])){
-              echo"<td style='color:red'>we had a problem changing your profile</td>";
-           } 
-           if(isset($_GET['done'])){
-              echo"<td style='color:green'>Profile changed successfully.</td>";
-           }
+                echo"<td style='color:red'>Error with password changing</td>";
+             } 
+             if(isset($_GET['done'])){
+                echo"<td style='color:green'>Password changed successfully.</td>";
+             }
+             
             ?>
         </form>
     </div>
@@ -105,5 +104,24 @@ $row=mysqli_fetch_assoc($result);
       </p>
     </footer>
   </div>
+  <script>
+                function checkpass() {
+                let pass = document.getElementById("new_pass").value
+                let cpass = document.getElementById("cpass").value
+                let msg = document.getElementById("error")
+                if (pass != cpass) {
+                    msg.innerHTML = "Password don't match!"
+                    return false
+                }
+                else {
+                    msg.innerHTML = ""
+                    return true
+                }
+              }
+            if(checkpass()){
+                document.getElementById("button").disabled=false;
+            }
+
+  </script>
 </body>
 </html>
