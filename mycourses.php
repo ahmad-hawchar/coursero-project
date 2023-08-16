@@ -19,7 +19,7 @@ if (!$_SESSION["isloggedin"]) {
 <body onload="categoryfill()">
     <header>
         <div class="logo">
-            <h1>LOGO</h1>
+            <h1><a href="homepage.php">LOGO</a></h1>
         </div>
         <div class="title">
             MY ADS

@@ -185,7 +185,12 @@
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //we only show featured posts while on the first page! therefor i need to send the page that we are currently on by url
             if ($nbrpage == 1) {
-
+                if (isset($_GET["search-content"])){
+                    $search=$_GET["search-content"];
+                }
+                if (isset($_GET["filter"])){
+                    $filter=$_GET["filter"];
+                }
                 for ($i = 0; $i < $frows; $i++) {
                     $frow = mysqli_fetch_assoc($featured);
                     $fquery = "select * from user where id='$frow[Id_t]' ";
@@ -255,7 +260,13 @@
                 }
             }
             //-------------------------------------------------------------------------------------------------------------------------------------------------
-            else { //if we are on a page different than page 1
+            else {if (isset($_GET["search-content"])){
+                $search=$_GET["search-content"];
+            } 
+            if (isset($_GET["filter"])){
+                $filter=$_GET["filter"];
+            }
+                //if we are on a page different than page 1
                 //cant i just start fetching from line 15 and get 15 posts
                 for ($i = 0; $i < $rows; $i++) {
                     $row = mysqli_fetch_assoc($result);

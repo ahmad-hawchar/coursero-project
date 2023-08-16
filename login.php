@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="logo">LOGO</div>
+    <div class="logo"><a href="homepage.php">LOGO</a></div>
     <section>
 
 
