@@ -278,14 +278,14 @@ width: 100%;
 .description {
   margin-left: 1vh;
   vertical-align: bottom;
-  font-size: 1vw;
+  font-size: 1vmax;
   grid-column: 1 / span 2;
   max-width: 22vh;
   margin-bottom: 1vh;
 }
 .name {
   margin-top: 1.5vh;
-  font-size: 1vw;
+  font-size: 1vmax;
 }
 .label {
   background-color: #e9e9e9;
