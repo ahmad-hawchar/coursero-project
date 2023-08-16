@@ -45,9 +45,17 @@ require_once("connection.php");
           <li>
             <a href="myads.php">My ads</a>
           </li>
-          <li>
-          <a href="#">Settings</a>
-          </li>
+          
+            <?php  if(isset($_SESSION['role']) ){
+             if($_SESSION['role']==1){
+
+            
+              echo" <li><a href='createpost.php'>add a post</a>";
+              echo"</li><li><a href='createcourse.php'>add a course</a></li>";
+            }
+          }
+            ?>
+          
           <?php
         if (isset($_SESSION["isloggedin"])) {
 
