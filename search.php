@@ -190,6 +190,7 @@
             $search="";
            }
             if ($nbrpage == 1) {
+                $filter = $_GET["filter"];
 
                 for ($i = 0; $i < $frows; $i++) {
                     $frow = mysqli_fetch_assoc($featured);
@@ -297,7 +298,8 @@
 
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------
-            else { //if we are on a page different than page 1
+            else { $filter = $_GET["filter"];
+                //if we are on a page different than page 1
                 //cant i just start fetching from line 15 and get 15 posts
                 for ($i = 0; $i < $rows; $i++) {
                     $row = mysqli_fetch_assoc($result);
@@ -338,7 +340,7 @@
                                         if (mysqli_num_rows($reviewres) > 0) {
                                             $reviewres = mysqli_fetch_assoc($reviewres);
                                             if ($reviewres['rating'] == 'up') {
-                                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
+                                                echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='upped'><img src='arrow-up-solid.svg' /></div></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-down-solid.svg' /></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
                                             } else {
                                                 echo "</div></td><td class='fav'><div class='rating-button'> <a href='review.php?review=up&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><img src='arrow-up-solid.svg' /></a><a href='review.php?review=down&page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search'><div class='downed'><img src='arrow-down-solid.svg' /></div></a></div><div class='fav-button'><a href='processfav.php?page=$nbrpage&nbrpost=$i&postid=$row[Id]&filter=$filter&cat=$cat&search-content=$search '> <img src='star-regular.svg' /></a></div></td></tr></table> ";
                                             }

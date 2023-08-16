@@ -4,6 +4,7 @@ require_once('connection.php');
 if ($_SESSION['isloggedin'] != 'true') {
     header("Location:login.php");
     return;
+    
 }
 else{
 if (
