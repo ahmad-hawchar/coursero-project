@@ -24,7 +24,7 @@ include("connection.php");
 <header>
       <nav>
       <div class="logo">
-      <h1>LOGO</h1>
+      <h1><a href="homepage.php">LOGO</a></h1>
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">

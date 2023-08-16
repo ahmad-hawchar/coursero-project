@@ -43,9 +43,17 @@ require_once("connection.php");
             <a href="chat.php?receiver-id=1">Support</a>
           </li>
           <li>
-            <a href="myads.php">My ads</a>
-          </li>
+           <?php
+          if($_SESSION['role']==1){
+            echo'<a href="myads.php">My ads</a>';
+
+}
+else{
+  echo'<a href="bought.php">bought courses</a>';
+}
+          ?>
           
+          </li>
             <?php  if(isset($_SESSION['role']) ){
              if($_SESSION['role']==1){
 
@@ -189,7 +197,7 @@ require_once("connection.php");
                   let description=content[i][1];
                   if(description.length>10){
                     description=description.substring(0,11);
-                    description+=" <a href='post.php?post-id='"+content[i][0] +">readmore...</a>"
+                    description+=" <a href='post.php?post-id='"+content[i][0]+"'>readmore...</a>"
                   }
                   msg += "<div class='favpost'> <div class='picture'> <img src='" + content[i][5] + "'></div>" + "<div class='name'>" + content[i][3] + '<br> ' + content[i][2] + "</div>" + "<div class='description'>" + description + '</div></div>';
 

@@ -1,14 +1,13 @@
 <?php
  session_start();
  require_once('connection.php');
- if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
-    header("Location:login.php");
-    
-}
+ //if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
+ //header("Location:login.php");
+//}
 $id=$_SESSION['id'];
 
 if(!isset($_GET['course_id'])){
-    header("location:showcourses.php");
+    header("location:course-search.php");
 }
 else{
 $course_id=$_GET['course_id'];
