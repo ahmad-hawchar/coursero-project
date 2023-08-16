@@ -190,7 +190,10 @@
             $search="";
            }
             if ($nbrpage == 1) {
-                $filter = $_GET["filter"];
+                if(isset($_GET["filter"])){
+                    $filter = $_GET["filter"];
+                }
+               
 
                 for ($i = 0; $i < $frows; $i++) {
                     $frow = mysqli_fetch_assoc($featured);
@@ -298,7 +301,10 @@
 
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------
-            else { $filter = $_GET["filter"];
+            else { if(isset($_GET["filter"])){
+                $filter = $_GET["filter"];
+            }
+           ;
                 //if we are on a page different than page 1
                 //cant i just start fetching from line 15 and get 15 posts
                 for ($i = 0; $i < $rows; $i++) {

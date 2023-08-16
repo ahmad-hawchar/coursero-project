@@ -1,14 +1,20 @@
 <?php
  session_start();
  require_once('connection.php');
+<<<<<<< HEAD
  if ($_SESSION['isloggedin'] != 'true') {
     header("Location:login.php");
     
 }
+=======
+ //if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
+ //header("Location:login.php");
+//}
+>>>>>>> 08ede56fb5700b268bc70d45d79d65760dab0118
 $id=$_SESSION['id'];
 
 if(!isset($_GET['course_id'])){
-    header("location:showcourses.php");
+    header("location:course-search.php");
 }
 else{
 $course_id=$_GET['course_id'];
@@ -36,7 +42,11 @@ if($num==1||$num1==1){
 <header>
       <nav>
       <div class="logo">
+<<<<<<< HEAD
       <h1 >LOGO</h1>
+=======
+      <h1><a href="homepage.php">LOGO</a></h1>
+>>>>>>> 08ede56fb5700b268bc70d45d79d65760dab0118
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">

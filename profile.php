@@ -25,7 +25,11 @@ else{
 <header>
       <nav>
       <div class="logo">
+<<<<<<< HEAD
       <h1 >LOGO</h1>
+=======
+      <h1><a href="homepage.php">LOGO</a></h1>
+>>>>>>> 08ede56fb5700b268bc70d45d79d65760dab0118
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
