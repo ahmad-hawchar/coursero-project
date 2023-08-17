@@ -1,16 +1,10 @@
 <?php
  session_start();
  require_once('connection.php');
-<<<<<<< HEAD
  if ($_SESSION['isloggedin'] != 'true') {
     header("Location:login.php");
     
 }
-=======
- //if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
- //header("Location:login.php");
-//}
->>>>>>> 08ede56fb5700b268bc70d45d79d65760dab0118
 $id=$_SESSION['id'];
 
 if(!isset($_GET['course_id'])){

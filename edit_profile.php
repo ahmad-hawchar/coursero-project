@@ -37,12 +37,18 @@ $row=mysqli_fetch_assoc($result);
             <a href="chat.php?receiver-id=1">Support</a>
           </li>
           <li>
-            <a href="myads.php">My ads</a>
-          </li>
-          <li>
-            <a href="mycourses.php">My courses</a>
-          </li>
+           <?php
+          if($_SESSION['role']==1){
+            echo'<a href="myads.php">My ads</a>';
+            echo'<a href="mycourses.php">My courses</a>';
+
+}
+else{
+  echo'<a href="bought.php">bought courses</a>';
+}
+          ?>
           
+          </li>
             <?php  if(isset($_SESSION['role']) ){
              if($_SESSION['role']==1){
 
@@ -74,7 +80,8 @@ $row=mysqli_fetch_assoc($result);
     </header>
     <!-- Script -->
     <script src="script.js"></script>
-  
+
+
     <div class="edit-profile-container">
         <h2>Edit Profile</h2>
         <form action="update_profile.php" method="post" enctype="multipart/form-data">

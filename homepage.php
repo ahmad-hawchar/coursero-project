@@ -46,23 +46,16 @@ require_once("connection.php");
             <a href="chat.php?receiver-id=1">Support</a>
           </li>
           <li>
-<<<<<<< HEAD
-            <a href="myads.php">My ads</a>
-          </li>
-          <li>
-            <a href="mycourses.php">My courses</a>
-          </li>
-=======
            <?php
           if($_SESSION['role']==1){
             echo'<a href="myads.php">My ads</a>';
+            echo'<a href="mycourses.php">My courses</a>';
 
 }
 else{
   echo'<a href="bought.php">bought courses</a>';
 }
           ?>
->>>>>>> 08ede56fb5700b268bc70d45d79d65760dab0118
           
           </li>
             <?php  if(isset($_SESSION['role']) ){

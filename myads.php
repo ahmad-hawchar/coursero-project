@@ -3,6 +3,10 @@ if(!$_SESSION["isloggedin"]){
     header("location:login.php");
     return;
 }
+if($_SESSION["role"]==2){
+    header("location:homepage.php");
+    return;
+}
 ?>
 
 <html lang="en">
@@ -12,19 +16,75 @@ if(!$_SESSION["isloggedin"]){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="myads.css" />
+    <link rel="stylesheet" href="mycourses.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body onload="categoryfill()">
-  <header>
-    <div class="logo">
-      <h1><a href="homepage.php">LOGO</a></h1>
+<header>
+      <nav>
+      <div class="logo">
+      <h1 >LOGO</h1>
     </div>
-    <div class="title">
-       MY ADS
-</div>
-<div class="homepage"><a href="homepage.php" >GO BACK TO HOMEPAGE</a></div>
-  </header>
+        <i class="fas fa-bars" id="ham-menu"></i>
+        <ul id="nav-bar">
+          <li>
+            <a href="homepage.php">Home</a>
+          </li>
+          <li>
+            <a href="recentChat.php">Chat</a>
+          </li>
+          <li>
+            <a href="chat.php?receiver-id=1">Support</a>
+          </li>
+          <li>
+           <?php
+          if($_SESSION['role']==1){
+            echo'<a href="myads.php">My ads</a>';
+            echo'<a href="mycourses.php">My courses</a>';
+
+}
+else{
+  echo'<a href="bought.php">bought courses</a>';
+}
+          ?>
+          
+          </li>
+            <?php  if(isset($_SESSION['role']) ){
+             if($_SESSION['role']==1){
+
+            
+              echo" <li><a href='createpost.php'>add a post</a>";
+              echo"</li><li><a href='createcourse.php'>add a course</a></li>";
+            }
+          }
+            ?>
+          
+          <?php
+        if (isset($_SESSION["isloggedin"])) {
+
+          if ($_SESSION["isloggedin"] == "true") {
+            $id=$_SESSION['id'];
+            echo "<li>";
+            echo "<a href='profile.php?id=$id'><i class='fa fa-user' aria-hidden='false'></i></a>";
+            echo "  </li>";
+          } else {
+            echo "<li> <a href='Register.php'> REGISTER/LOGIN</a></li>";
+          }
+
+        } else {
+          echo "<li> <a href='Register.php'> REGISTER/LOGIN</a></li>";
+        }
+        ?>
+        </ul>
+      </nav>
+    </header>
+    <!-- Script -->
+    <script src="script.js"></script>
+    <div style="background-color:#e9e9e9; margin-bottom:10px">
+        <center>
+          <h2 >My ads</h2>
+        </center>
+      </div>
     <section class="columns">
         <?php
     //-------------------------------------------------------------------------------------------------------------------------------------------------

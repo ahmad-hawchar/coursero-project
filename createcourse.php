@@ -1,8 +1,12 @@
 <?php
 session_start();
-if ($_SESSION['isloggedin'] !== 'true' || $_SESSION['role'] != 1) {
+if ($_SESSION['isloggedin'] !== 'true' ) {
     header("Location: login.php");
     exit();
+}
+if($_SESSION["role"]==2){
+  header("location:homepage.php");
+  return;
 }
 
 require_once('connection.php');
