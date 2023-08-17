@@ -90,7 +90,7 @@ else{
     } else {
         $row1 = mysqli_fetch_assoc($res);
         echo "<h1>edit your Post</h1>";
-        echo "<form action='createpost2.php' enctype='file' method='GET'>";
+        echo "<form action='edit-post2.php' enctype='file' method='GET'>";
         echo " <label for='photo'>Photo:</label>";
         echo " <input type='file' id='photo' name='photo' required>";
         echo " <label for='description'>Description:</label>";
