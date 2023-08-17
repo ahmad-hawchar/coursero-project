@@ -47,7 +47,8 @@ nav ul a {
   padding: 12px;
 }
 nav ul a:hover {
-  background-color: #111111;
+  background-color: #ffffff;
+  color: #111111;
 }
 section#home {
   height: 100vh;
