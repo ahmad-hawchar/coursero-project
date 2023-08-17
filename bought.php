@@ -112,7 +112,7 @@ else{
                     echo "<div class='desc'> $row[Description] </div>";
                     echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
                     echo "<div class='category'> category: $row[category] </div>";
-                    echo "<div class='chatbutton'><a  href='showcourse.php?course_id=$row[id]'> see course </a></div></span></div></div></td>";
+                    echo "<div class='chatbutton'><a  href='showcourse2.php?course_id=$row[id]'> see course </a></div></span></div></div></td>";
                     echo "</tr></table>";
                 }
 
