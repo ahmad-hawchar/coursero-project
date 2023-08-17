@@ -1,20 +1,26 @@
 <?php
 session_start();
-if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
-    header("Location:login.php");
-    
+if ($_SESSION['isloggedin'] !== 'true' ) {
+    header("Location: login.php");
+    exit();
 }
+if($_SESSION["role"]==2){
+  header("location:homepage.php");
+  return;
+}
+
 require_once('connection.php');
-    ?>
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Create Course</title>
- <link rel="stylesheet" href="createpost.css">
+    <title>Create Course</title>
+    <link rel="stylesheet" href="createpost.css">
 </head>
 <body>
-  <h1>Create a New Course</h1>
-  <form action="createcourse2.php" method="POST"  enctype="multipart/form-data">
+    <h1>Create a New Course</h1>
+    <form action="createcourse2.php" method="POST" enctype="multipart/form-data">
     <label for="course_name">Course Name</label>
     <input type="text" id="course_name" name="course_name"required>
     <br><br>
@@ -57,7 +63,7 @@ require_once('connection.php');
             echo"<td style='color:red'>we had a problem creating your post! try again later</td>";
          } 
          if(isset($_GET['done'])){
-            echo"<td style='color:green'>post was created! waiting for admin approval.</td>";
+            echo"<td style='color:green'>post was created! </td>";
          }?>
   </form>
 

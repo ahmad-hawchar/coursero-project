@@ -1,29 +1,126 @@
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  font-size: medium;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+header {
+  width: 100%;
+  background-color: #1abc9c;
+  padding: 20px;
+  font-size: 15px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+nav a {
+  
+  text-decoration: none;
+}
+.logo {
+    list-style-type: none;
     margin: 0;
-    position:relative;
+    padding-left: 15px;
+    overflow: hidden;  
+    color: white;
+  }
+nav ul a {
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 25px;
+  padding: 12px;
+}
+nav ul a:hover {
+  background-color: #111111;
+}
+section#home {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+#ham-menu {
+  display: none;
+}
+nav ul.active {
+  left: 0;
+}
+@media only screen and (max-width: 991px) {
+  html {
+    font-size: 56.25%;
   }
   header {
-    background: #1abc9c;
-    color: white;
-    font-size: 15px;
-    position: relative;
-    height: 10vh;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    padding: 2.2rem 5rem;
   }
-  .logo {
+}
+@media only screen and (max-width: 767px) {
+  html {
+    font-size: 50%;
+  }
+  #ham-menu {
+    display: block;
+    color: #ffffff;
+  }
+  nav a#logo,
+  #ham-menu {
+    font-size: 3.2rem;
+  }
+  nav ul {
+    background-color: #1abc9c;
+    position: fixed;
+    left: -100vw;
+    top: 73.6px;
+    width: 100vw;
+    height: calc(100vh - 73.6px);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    list-style-type: none;
-    width: 10vw;
+    justify-content: space-around;
+    transition: 1s;
+    gap: 0;
+    z-index: 2;
   }
+  .post{
+    width: 200px;
+  }
+}
+@media only screen and (max-width: 575px) {
+  html {
+    font-size: 46.87%;
+  }
+  header {
+    padding: 2rem 3rem;
+  }
+  nav ul {
+    top: 65.18px;
+    height: calc(100vh - 65.18px);
+    z-index: 2;
+  }
+}
+.footer {
+  margin-top: auto;
+  background-color: #1abc9c;
+  color: white;
+  text-align: center;
+  padding: 16px;
+}
   .title{
     display: flex;
     justify-content: center;
@@ -117,7 +214,7 @@ body {
   .names {
       left: 52%;
     position: absolute;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     
   }
   .desc {

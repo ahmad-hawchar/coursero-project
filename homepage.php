@@ -32,10 +32,13 @@ require_once("connection.php");
 <header>
       <nav>
       <div class="logo">
-      <h1>LOGO</h1>
+      <h1 >LOGO</h1>
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
+          <li>
+            <a href="homepage.php">Home</a>
+          </li>
           <li>
             <a href="recentChat.php">Chat</a>
           </li>
@@ -46,6 +49,7 @@ require_once("connection.php");
            <?php
           if($_SESSION['role']==1){
             echo'<a href="myads.php">My ads</a>';
+            echo'<a href="mycourses.php">My courses</a>';
 
 }
 else{
@@ -316,7 +320,7 @@ else{
       }
 
       ?>
-      <div>
+      <div style="background-color:#e9e9e9; margin-bottom:10px">
         <center>
           <h2 class="label"> Categories</h2>
         </center>

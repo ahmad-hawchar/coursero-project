@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
-    header("Location:login.php");
+    header("Location:login.php"); 
     
 }
 $id=$_SESSION['id'];
@@ -27,9 +27,10 @@ else{
  <link rel="stylesheet" href="createpost.css">
 </head>
 <body>
+
   <h1>Edit the Course</h1>
   <?php
-  echo"<form action='editcourse2.php?id=$course_id' method='POST'  enctype='multipart/form-data'>";
+  echo"<form action='edit_course2.php?id=$course_id' method='POST'  enctype='multipart/form-data'>";
     
     $videos=$row1['videos'];
     $tab=explode(',',"$videos");
@@ -77,10 +78,10 @@ else{
     echo "<br><br>";
     echo"<input type='submit' value='Submit'>";
          if(isset($_GET['error'])){
-            echo"<td style='color:red'>we had a problem creating your post! try again later</td>";
+            echo"<td style='color:red'> we had a problem editing your course! try again later</td>";
          } 
          if(isset($_GET['done'])){
-            echo"<td style='color:green'>post was created! waiting for admin approval.</td>";
+            echo"<td style='color:green;'> course was edited successfully.</td>";
          }
          }}?>
   </form>

@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role'] != 1) {
+if ($_SESSION['isloggedin'] != 'true' ) {
     header("Location:login.php");
     return;
 }
@@ -23,10 +23,13 @@ $row=mysqli_fetch_assoc($result);
 <header>
       <nav>
       <div class="logo">
-      <h1>LOGO</h1>
+      <h1 >LOGO</h1>
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
+          <li>
+            <a href="homepage.php">Home</a>
+          </li>
           <li>
             <a href="recentChat.php">Chat</a>
           </li>
@@ -34,11 +37,28 @@ $row=mysqli_fetch_assoc($result);
             <a href="chat.php?receiver-id=1">Support</a>
           </li>
           <li>
-            <a href="myads.php">My ads</a>
+           <?php
+          if($_SESSION['role']==1){
+            echo'<a href="myads.php">My ads</a>';
+            echo'<a href="mycourses.php">My courses</a>';
+
+}
+else{
+  echo'<a href="bought.php">bought courses</a>';
+}
+          ?>
+          
           </li>
-          <li>
-          <a href="#">Settings</a>
-          </li>
+            <?php  if(isset($_SESSION['role']) ){
+             if($_SESSION['role']==1){
+
+            
+              echo" <li><a href='createpost.php'>add a post</a>";
+              echo"</li><li><a href='createcourse.php'>add a course</a></li>";
+            }
+          }
+            ?>
+          
           <?php
         if (isset($_SESSION["isloggedin"])) {
 
@@ -60,22 +80,27 @@ $row=mysqli_fetch_assoc($result);
     </header>
     <!-- Script -->
     <script src="script.js"></script>
-  
+
+
     <div class="edit-profile-container">
         <h2>Edit Profile</h2>
         <form action="update_profile.php" method="post" enctype="multipart/form-data">
             <?php
-            echo"<label for='profile-picture'>Profile Picture(not required):</label>";
-            echo"<input type='file' id='profile-picture''name='profile_picture' accept='image/*'>";
-            echo"<label for='first-name'>First Name(not required):</label>";
+            echo"<label for='profile-picture'>Profile Picture:</label>";
+            echo"<input type='file' name='pic' accept='image/*'>";
+            echo"<label for='first-name'>First Name:</label>";
             echo"<input type='text' id='first-name' name='first_name' value='".$row['Fname']."'>";
-            echo"<label for='last-name'>Last Name (not required):</label>";
+            echo"<label for='last-name'>Last Name:</label>";
             echo"<input type='text' id='last-name' name='last_name' value='".$row['Lname']."'>";
-            echo"<label for='old_pass'>Old Password(not required):</label>";
-            echo"<input type='password' id='old_pass' name='old_pass' >";
-            echo"<label for='new_pass'>new Password(not required):</label>";
-            echo"<input type='password' id='new_pass' name='new_pass' >";
+            echo"<label for='username'>Username:</label>";
+            echo"<input type='text' id='username' name='username' value='".$row['username']."'>";
             echo"<input type='submit' value='Update Profile'>";
+            if(isset($_GET['error'])){
+              echo"<td style='color:red'>we had a problem changing your profile</td>";
+           } 
+           if(isset($_GET['done'])){
+              echo"<td style='color:green'>Profile changed successfully.</td>";
+           }
             ?>
         </form>
     </div>
