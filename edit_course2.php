@@ -18,7 +18,7 @@ if (
 
     $id = $_SESSION['id'];
     $date = date("Y-m-d");
-    
+    $course_id=$_GET['id'];
     $thumbnail = $_FILES['thumbnail']['name'];
     $thumbnail_tmp = $_FILES['thumbnail']['tmp_name'];
     move_uploaded_file($thumbnail_tmp, "thumbnail/$thumbnail");
@@ -34,15 +34,18 @@ if (
     }
     $videos = rtrim($videos, ','); // Remove trailing comma
     
-    $query = "INSERT INTO course (Id_t, videos, price, category, Description, Date, num_videos, thumbnail, name) VALUES ('$id', '$videos', '$price', '$cat', '$desc', '$date', '$num_videos', '$thumbnail', '$name')";
+    $query = "UPDATE course SET `name`='$name', videos='$videos', price='$price', category='$cat', description='$desc', `date`='$date', num_videos='$num_videos', thumbnail='$thumbnail' WHERE id=$course_id";
     $result = mysqli_query($con, $query);
     
+    
     if ($result) {
-        header("Location: createcourse.php?done=1");
+        header("Location: editcourse.php?course_id=$course_id&done=1");
     } else {
-        header("Location: createcourse.php?error=1");
+        header("Location: editcourse.php?course_id=$course_id&error=1");
     }
+    
 } else {
-    header("Location: createcourse.php?error=2");
+    header("Location: editcourse.php?course_id=$course_id&error=2");
+
 }
 ?>

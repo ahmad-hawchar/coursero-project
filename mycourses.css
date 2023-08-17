@@ -4,6 +4,7 @@ body {
   flex-direction: column;
   padding: 0;
   margin: 0;
+  font-size: medium;
 }
 
 * {
@@ -96,6 +97,9 @@ nav ul.active {
     gap: 0;
     z-index: 2;
   }
+  .post{
+    width: 200px;
+  }
 }
 @media only screen and (max-width: 575px) {
   html {
@@ -117,7 +121,28 @@ nav ul.active {
   text-align: center;
   padding: 16px;
 }
-
+  .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  top:5vh
+  }
+  .homepage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    }
+  
+ 
+    
+  
+  .footer {
+    margin-top: auto;
+    background-color: #1abc9c;
+    color: white;
+    text-align: center;
+  }
   
   
  
@@ -189,7 +214,7 @@ nav ul.active {
   .names {
       left: 52%;
     position: absolute;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     
   }
   .desc {

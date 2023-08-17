@@ -86,6 +86,7 @@ else{
           <h2 >My courses</h2>
         </center>
       </div>
+      
     <section class="columns">
         <?php
         //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -106,14 +107,14 @@ else{
                 $teacher = mysqli_query($con, $query);
                 if ($teacher) {
                     $teacher = mysqli_fetch_assoc($teacher);
-                    echo "<table><tr><td><div class='post'> ";
+                    echo "<div class='post'> ";
                     echo "<div class='row1-container'><span class='row1'><div class='picture'> <img src='$row[thumbnail]' alt='$row[thumbnail]' > </div>";
                     echo "<div class='names'> course name:$row[name] <br> creator name:$teacher[Fname] $teacher[Lname] <br> Price: $row[price]$</div></span></div>";
                     echo "<div class='desc'> $row[Description] </div>";
                     echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
                     echo "<div class='category'> category: $row[category] </div>";
-                    echo "<div class='chatbutton'><a  href='Edit.php?course-id=$row[id]'> EDIT </a></div></span></div></div></td>";
-                    echo "</tr></table>";
+                    echo "<div class='chatbutton'><a  href='editcourse.php?course_id=$row[id]'> EDIT </a></div></span></div></div>";
+                    
                 }
 
 

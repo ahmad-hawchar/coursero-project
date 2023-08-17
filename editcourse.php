@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['isloggedin'] != 'true' || $_SESSION['role']!=1) {
-    header("Location:login.php");
+    header("Location:login.php"); 
     
 }
 $id=$_SESSION['id'];
@@ -27,74 +27,10 @@ else{
  <link rel="stylesheet" href="createpost.css">
 </head>
 <body>
-<header>
-      <nav>
-      <div class="logo">
-      <h1 >LOGO</h1>
-    </div>
-        <i class="fas fa-bars" id="ham-menu"></i>
-        <ul id="nav-bar">
-          <li>
-            <a href="homepage.php">Home</a>
-          </li>
-          <li>
-            <a href="recentChat.php">Chat</a>
-          </li>
-          <li>
-            <a href="chat.php?receiver-id=1">Support</a>
-          </li>
-          <li>
-           <?php
-          if($_SESSION['role']==1){
-            echo'<a href="myads.php">My ads</a>';
-            echo'<a href="mycourses.php">My courses</a>';
 
-}
-else{
-  echo'<a href="bought.php">bought courses</a>';
-}
-          ?>
-          
-          </li>
-            <?php  if(isset($_SESSION['role']) ){
-             if($_SESSION['role']==1){
-
-            
-              echo" <li><a href='createpost.php'>add a post</a>";
-              echo"</li><li><a href='createcourse.php'>add a course</a></li>";
-            }
-          }
-            ?>
-          
-          <?php
-        if (isset($_SESSION["isloggedin"])) {
-
-          if ($_SESSION["isloggedin"] == "true") {
-            $id=$_SESSION['id'];
-            echo "<li>";
-            echo "<a href='profile.php?id=$id'><i class='fa fa-user' aria-hidden='false'></i></a>";
-            echo "  </li>";
-          } else {
-            echo "<li> <a href='Register.php'> REGISTER/LOGIN</a></li>";
-          }
-
-        } else {
-          echo "<li> <a href='Register.php'> REGISTER/LOGIN</a></li>";
-        }
-        ?>
-        </ul>
-      </nav>
-    </header>
-    <!-- Script -->
-    <script src="script.js"></script>
-    <div style="background-color:#e9e9e9; margin-bottom:10px">
-        <center>
-          <h2 >Edit Course</h2>
-        </center>
-      </div>
   <h1>Edit the Course</h1>
   <?php
-  echo"<form action='editcourse2.php?id=$course_id' method='POST'  enctype='multipart/form-data'>";
+  echo"<form action='edit_course2.php?id=$course_id' method='POST'  enctype='multipart/form-data'>";
     
     $videos=$row1['videos'];
     $tab=explode(',',"$videos");
@@ -142,10 +78,10 @@ else{
     echo "<br><br>";
     echo"<input type='submit' value='Submit'>";
          if(isset($_GET['error'])){
-            echo"<td style='color:red'>we had a problem creating your post! try again later</td>";
+            echo"<td style='color:red'> we had a problem editing your course! try again later</td>";
          } 
          if(isset($_GET['done'])){
-            echo"<td style='color:green'>post was created! waiting for admin approval.</td>";
+            echo"<td style='color:green;'> course was edited successfully.</td>";
          }
          }}?>
   </form>
