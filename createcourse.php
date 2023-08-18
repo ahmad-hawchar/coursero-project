@@ -17,7 +17,7 @@ require_once('connection.php');
 <head>
     <title>Create Course</title>
     <link rel="stylesheet" href="createpost.css">
-</head>
+</head> 
 <body>
 
     <h1>Create a New Course</h1>
