@@ -337,7 +337,7 @@ else{
         <p class="item">
           <img src="Teacher-in-front-of-chalkboard.jpeg" class="photo" onmouseover="add(this)"
             onmouseout="remove(this)" />
-            <a href='search.php?cat=informatique'> <button class="overlay-button">browse informatique posts</button></a>
+            <a href='search.php?cat=private-training'> <button class="overlay-button">browse private-traning posts</button></a>
         </p>
         <p class="item">
           <img src="Teacher-in-front-of-chalkboard.jpeg" class="photo" onmouseover="add(this)"
