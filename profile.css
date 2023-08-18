@@ -163,3 +163,11 @@ a:hover {
 .profilelink a:hover {
   color: #0056b3;
 }
+
+button{
+  background-color: #1abc9c;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  border: none;
+}

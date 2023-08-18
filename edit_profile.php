@@ -34,21 +34,24 @@ $row=mysqli_fetch_assoc($result);
             <a href="recentChat.php">Chat</a>
           </li>
           <li>
-            <a href="chat.php?receiver-id=1">Support</a>
+            <a href="course-search.php">Courses</a>
           </li>
           <li>
+            <a href="chat.php?receiver-id=1">Support</a>
+          </li>
+
            <?php
           if($_SESSION['role']==1){
-            echo'<a href="myads.php">My ads</a>';
-            echo'<a href="mycourses.php">My courses</a>';
+            echo'<li><a href="myads.php">My ads</a></li>';
+            echo'<li><a href="mycourses.php">My courses</a></li>';
 
 }
 else{
-  echo'<a href="bought.php">bought courses</a>';
+  echo'<li><a href="bought.php">bought courses</a></li>';
 }
           ?>
           
-          </li>
+
             <?php  if(isset($_SESSION['role']) ){
              if($_SESSION['role']==1){
 
@@ -82,12 +85,13 @@ else{
     <script src="script.js"></script>
 
 
+
     <div class="edit-profile-container">
         <h2>Edit Profile</h2>
         <form action="update_profile.php" method="post" enctype="multipart/form-data">
             <?php
             echo"<label for='profile-picture'>Profile Picture:</label>";
-            echo"<input type='file' name='pic' accept='image/*'>";
+            echo"<input type='file' name='pic' accept='image/*'>" ;
             echo"<label for='first-name'>First Name:</label>";
             echo"<input type='text' id='first-name' name='first_name' value='".$row['Fname']."'>";
             echo"<label for='last-name'>Last Name:</label>";
