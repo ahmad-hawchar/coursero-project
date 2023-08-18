@@ -80,7 +80,7 @@
                     <select id="cat" name="cat" class="select2">
                         <option></option>
                         <option>informatique</option>
-                        <option>informatique</option>
+                        <option>private-training</option>
                         <option>informatique</option>
                         <option>informatique</option>
                         <option>informatique</option>
