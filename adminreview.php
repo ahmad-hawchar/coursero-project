@@ -10,7 +10,7 @@ return;
 <html>
 <head>
 <style>
-table{  
+body{  
     justify-content: center;
     align-items: center;
 }
