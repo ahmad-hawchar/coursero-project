@@ -153,8 +153,7 @@ img {
 .names {
     left: 52%;
   position: absolute;
-  font-size: 1.5vw;
-  font-size: medium;
+  font-size: 1.5vmax;
   
 }
 .desc {
@@ -241,7 +240,7 @@ table {
   .post {
     width: 70vw;
     height: 40vh;
-    font-size: 2vh;
+    font-size: 2vmax;
   }
   .rating-button {
     height: 40vh;}
