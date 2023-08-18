@@ -60,7 +60,6 @@
                 <li class="radio">
                 <span class="p">Teacher</span>
                     <input type="radio" name="role" value="1" required> 
-                    
                     <span class="p">Female</span>
                     <input type="radio" name="gender" value="female" required>
                 </li>

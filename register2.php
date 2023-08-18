@@ -23,9 +23,9 @@ require_once 'connection.php';
         $result = mysqli_query($con, $query);
         $nbr = mysqli_num_rows($result);
         if ($nbr == 0) {
-            $insert = "INSERT into user VALUES (NULL , '$user' ,'$pass' ,'$fname' ,'$lname' ,'$date' ,'$role','$gender','default.png')";
+            $insert = "INSERT into user VALUES (NULL , '$user' ,'$pass' ,'$fname' ,'$lname' ,'$date','$gender','$role','default.png')";
             $result = mysqli_query($con, $insert);
-            $result ? header("Location:login.php?registered='true'") : header("Location:register.php?error='true'");
+           $result ? header("Location:login.php?registered='true'") : header("Location:register.php?error='true'");
         } else {
             header("Location:register.php?taken='true'");
         }
