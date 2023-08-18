@@ -40,6 +40,9 @@ require_once("connection.php");
             <a href="homepage.php">Home</a>
           </li>
           <li>
+            <a href="adminreview.php">review posts</a>
+          </li>
+          <li>
             <a href="recentChat.php">Chat</a>
           </li>
           <li>
