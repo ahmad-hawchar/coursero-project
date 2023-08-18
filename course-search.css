@@ -62,7 +62,7 @@ section#home {
 nav ul.active {
   left: 0;
 }
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 993px) {
   html {
     font-size: 56.25%;
   }
@@ -256,14 +256,14 @@ img {
   border-top-left-radius: 10px;
 }
 .names {
-  left: 52%;
+    left: 52%;
   position: absolute;
   font-size: 1.2vw;
   
 }
 .desc {
-  position: absolute;
-  top: 15vh;
+    position: absolute;
+    top: 15vh;
   text-align: justify;
   padding-bottom: 10px;
   font-size: 2.7vh;

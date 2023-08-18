@@ -114,7 +114,7 @@ else{
     echo"<h1>".$row['name']."</h1><h4>Teacher: $username_t</h4> ";
     echo"<p>".$row['Description']."</p>";
     echo"<div class='price-section'><p>Subscribe to unlock all ".$row['num_videos']." videos of the course for<span class='price'>".$row['price']."$</span></p></div></div>";
-    echo"<center><button class='subscribe-button'>Subscribe</button></center><br><br>";
+    echo"<center><a href='buy.php?course_id=$course_id'><button class='subscribe-button'>Subscribe</button></a></center><br><br>";
     ?>
     <div class="footer">
     <footer>
