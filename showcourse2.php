@@ -47,15 +47,24 @@ if($num!=1&&$num1!=1){
             <a href="recentChat.php">Chat</a>
           </li>
           <li>
+            <a href="course-search.php">Courses</a>
+          </li>
+          <li>
             <a href="chat.php?receiver-id=1">Support</a>
           </li>
-          <li>
-            <a href="myads.php">My ads</a>
-          </li>
-          <li>
-            <a href="mycourses.php">My courses</a>
-          </li>
+
+           <?php
+          if($_SESSION['role']==1){
+            echo'<li><a href="myads.php">My ads</a></li>';
+            echo'<li><a href="mycourses.php">My courses</a></li>';
+
+}
+else{
+  echo'<li><a href="bought.php">bought courses</a></li>';
+}
+          ?>
           
+
             <?php  if(isset($_SESSION['role']) ){
              if($_SESSION['role']==1){
 

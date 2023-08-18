@@ -36,11 +36,7 @@ if($num==1||$num1==1){
 <header>
       <nav>
       <div class="logo">
-<<<<<<< HEAD
       <h1 >LOGO</h1>
-=======
-      <h1><a href="homepage.php">LOGO</a></h1>
->>>>>>> 08ede56fb5700b268bc70d45d79d65760dab0118
     </div>
         <i class="fas fa-bars" id="ham-menu"></i>
         <ul id="nav-bar">
@@ -51,15 +47,24 @@ if($num==1||$num1==1){
             <a href="recentChat.php">Chat</a>
           </li>
           <li>
+            <a href="course-search.php">Courses</a>
+          </li>
+          <li>
             <a href="chat.php?receiver-id=1">Support</a>
           </li>
-          <li>
-            <a href="myads.php">My ads</a>
-          </li>
-          <li>
-            <a href="mycourses.php">My courses</a>
-          </li>
+
+           <?php
+          if($_SESSION['role']==1){
+            echo'<li><a href="myads.php">My ads</a></li>';
+            echo'<li><a href="mycourses.php">My courses</a></li>';
+
+}
+else{
+  echo'<li><a href="bought.php">bought courses</a></li>';
+}
+          ?>
           
+
             <?php  if(isset($_SESSION['role']) ){
              if($_SESSION['role']==1){
 
@@ -91,7 +96,6 @@ if($num==1||$num1==1){
     </header>
     <!-- Script -->
     <script src="script.js"></script>
-  
     <?php
     $query1="SELECT * FROM course WHERE id=$course_id";
     $result=mysqli_query($con,$query1);
