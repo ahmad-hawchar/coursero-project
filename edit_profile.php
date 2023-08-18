@@ -91,7 +91,7 @@ else{
         <form action="update_profile.php" method="post" enctype="multipart/form-data">
             <?php
             echo"<label for='profile-picture'>Profile Picture:</label>";
-            echo"<input type='file' name='pic' accept='image/*'>";
+            echo"<input type='file' name='pic' accept='image/*'>" ;
             echo"<label for='first-name'>First Name:</label>";
             echo"<input type='text' id='first-name' name='first_name' value='".$row['Fname']."'>";
             echo"<label for='last-name'>Last Name:</label>";
