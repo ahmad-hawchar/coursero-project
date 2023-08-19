@@ -58,7 +58,7 @@ require_once("connection.php");
           </li>
 
            <?php
-          if(isset($_SESSION['ROLE'])&& $_SESSION['role']==1){
+          if(isset($_SESSION['role'])&& $_SESSION['role']==1){
             echo'<li><a href="myads.php">My ads</a></li>';
             echo'<li><a href="mycourses.php">My courses</a></li>';
 
