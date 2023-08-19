@@ -34,7 +34,7 @@ require_once('connection.php')
         echo "<h1>Edit Your Post</h1>";
         echo "<form action='edit-post2.php' method='POST' enctype='multipart/form-data'>";
         echo "<label for='photo'>Photo:</label>";
-        echo " <input type='file'name='photo' required accept='image/*'>";
+        echo " <input type='file' name='photo' required accept='image/*'>";
         echo "<label for='description'>Description:</label>";
         echo "<textarea id='description' name='description' rows='4' cols='50'  required></textarea>";
         echo"<script> let doc=document.getElementById('description')

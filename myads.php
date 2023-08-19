@@ -109,7 +109,7 @@ else{
                         if ($teacher) {
                         $teacher = mysqli_fetch_assoc($teacher);
                         echo "<div class='post'> ";
-                        echo "<span class='row1'><div class='picture'> <img loading='lazy' src='$row[picture]' alt='$row[picture]' > </div>";
+                        echo "<span class='row1'><div class='picture'> <img loading='lazy' src='photos/$row[picture]' alt='$row[picture]' > </div>";
                         echo "<div class='names'> First name:$teacher[Fname] <br> Last name:$teacher[Lname] </div></span>";
                         echo "<div class='desc'> $row[Description] </div>";
                         echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
