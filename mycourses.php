@@ -116,7 +116,8 @@ else{
                     echo "<div class='desc'> $row[Description] </div>";
                     echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
                     echo "<div class='category'> category: $row[category] </div>";
-                    echo "<div class='chatbutton'><a  href='editcourse.php?course_id=$row[id]'> EDIT </a></div></span></div></div>";
+                    echo "<div class='chatbutton'><a  href='showcourse2.php?course_id=$row[id]'>Open   </a></div>";
+                    echo "<div class='chatbutton'><a  href='editcourse.php?course_id=$row[id]'>  EDIT </a></div></span></div></div>";
                     
                 }
 
