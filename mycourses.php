@@ -111,7 +111,7 @@ else{
                 if ($teacher) {
                     $teacher = mysqli_fetch_assoc($teacher);
                     echo "<div class='post'> ";
-                    echo "<div class='row1-container'><span class='row1'><div class='picture'> <img src='$row[thumbnail]' alt='$row[thumbnail]' > </div>";
+                    echo "<div class='row1-container'><span class='row1'><div class='picture'> <img src='thumbnail/$row[thumbnail]' alt='$row[thumbnail]' > </div>";
                     echo "<div class='names'> course name:$row[name] <br> creator name:$teacher[Fname] $teacher[Lname] <br> Price: $row[price]$</div></span></div>";
                     echo "<div class='desc'> $row[Description] </div>";
                     echo "<span class='row3'><div class='date'> posted on $row[Date] </div>";
