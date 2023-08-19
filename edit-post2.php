@@ -27,11 +27,11 @@ if (
     $photo_tmp = $_FILES['photo']['tmp_name'];
     move_uploaded_file($photo_tmp, "photos/$photo");
     $p_id=$_POST['postid'];
-    $query ="UPDATE `post` SET `Id`='$p_id',`Date`='$date',`Description`='$desc',`Id_t`='$id',`category`='$cat',`picture`='$Photo',`price`='$price'  where  Id=$p_id and Id_t=$id ;";
+    $query ="UPDATE `post` SET `Id`='$p_id',`Date`='$date',`Description`='$desc',`Id_t`='$id',`category`='$cat',`picture`='$photo',`price`='$price'  where  Id=$p_id and Id_t=$id ;";
     echo"$query";
     $result = mysqli_query($con, $query);
     echo"$query";
-    //$result ? header("Location:edit-post.php?done=''&post='$p_id'") : header("Location:edit-post.php?error=''&post='$p_id'");
+    $result ? header("Location:edit-post.php?done=''&post='$p_id'") : header("Location:edit-post.php?error=''&post='$p_id'");
 } else {
     $p_id=$_POST['postid'];
     header("Location:edit-post.php?error=''&post=$p_id");

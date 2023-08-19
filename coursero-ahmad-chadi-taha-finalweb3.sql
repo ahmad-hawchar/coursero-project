@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2023 at 09:02 PM
+-- Generation Time: Aug 19, 2023 at 02:12 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -103,7 +103,8 @@ CREATE TABLE `denied` (
 
 INSERT INTO `denied` (`Id`, `Date`, `Description`, `Id_t`, `category`, `picture`, `price`, `admin_id`) VALUES
 (1, '2023-08-18', 'this is a test post! delete later ', 81, '0', '0', 10000, 1),
-(2, '2023-08-18', 'test test test', 85, '0', '0', 123131, 1);
+(2, '2023-08-18', 'test test test', 85, '0', '0', 123131, 1),
+(3, '2023-08-19', 'this post was done during testing all pages', 85, 'private-training', 'linkedin_photo__2_-removebg.pn', 10000, 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,14 @@ INSERT INTO `fav` (`id_student`, `id_post`) VALUES
 (113, 117),
 (113, 92),
 (113, 100),
-(1, 116);
+(1, 116),
+(85, 100),
+(85, 92),
+(82, 100),
+(82, 126),
+(82, 127),
+(82, 95),
+(1, 100);
 
 -- --------------------------------------------------------
 
@@ -207,7 +215,9 @@ INSERT INTO `messages` (`id`, `date`, `id_sender`, `id_receiver`, `cont`) VALUES
 (41, '2023-08-18', 81, 113, 'this is also a test message'),
 (42, '2023-08-18', 113, 1, 'ahmad'),
 (43, '2023-08-18', 113, 1, 'hawchar'),
-(44, '2023-08-18', 113, 1, 'testsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss');
+(44, '2023-08-18', 113, 1, 'testsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss'),
+(45, '2023-08-19', 82, 1, 'test'),
+(46, '2023-08-19', 1, 1, 'hello');
 
 -- --------------------------------------------------------
 
@@ -246,7 +256,7 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`Id`, `Date`, `Description`, `Id_t`, `category`, `picture`, `price`) VALUES
-(92, '2023-08-18', 'Great laptop for sale!test test test tested!', 81, 'informatique', '', 801),
+(92, '2023-08-19', 'Great laptop for sale!test test test tested!', 81, 'informatique', 'coureso-ahmad-chadi-taha.png', 802),
 (93, '2023-07-30', 'Looking to trade my phone.', 82, 'informatique', 'random.png', 300),
 (94, '2023-07-29', 'Selling gaming PC setup.', 83, 'informatique', 'random.png', 1500),
 (95, '2023-07-28', 'Brand new tablet for sale.', 84, 'informatique', 'random.png', 250),
@@ -272,7 +282,7 @@ INSERT INTO `post` (`Id`, `Date`, `Description`, `Id_t`, `category`, `picture`, 
 (115, '2023-07-08', 'Looking for help with coding project.', 104, 'informatique', 'random.png', 0),
 (116, '2023-07-07', 'Offering digital marketing services.', 105, 'informatique', 'random.png', 80),
 (117, '2024-06-04', 'this is the first personal training post on this site!!!!!!', 82, 'private-training', 'random.png', 10),
-(119, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', '', 802),
+(119, '2023-08-19', 'this is the first post created manually! test', 81, 'informatique', '', 802),
 (120, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', '', 802),
 (121, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', '', 802),
 (122, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', '', 802),
@@ -281,7 +291,8 @@ INSERT INTO `post` (`Id`, `Date`, `Description`, `Id_t`, `category`, `picture`, 
 (125, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', 'linkedinprofile.png', 802),
 (126, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', 'linkedinprofile.png', 802),
 (127, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', 'linkedinprofile.png', 802),
-(128, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', 'linkedinprofile.png', 802);
+(128, '2023-08-18', 'this is the first post created manually!', 81, 'informatique', 'linkedinprofile.png', 802),
+(129, '2023-08-19', 'this was added during testing', 85, 'private-training', 'linkedin_photo__2_-removebg.pn', 1231);
 
 -- --------------------------------------------------------
 
@@ -302,9 +313,14 @@ CREATE TABLE `review_courses` (
 INSERT INTO `review_courses` (`student_id`, `course_id`, `rating`) VALUES
 (81, 2, 'down'),
 (81, 3, 'down'),
-(82, 3, 'down'),
+(82, 3, 'up'),
 (113, 3, 'down'),
-(113, 4, 'down');
+(113, 4, 'down'),
+(85, 3, 'down'),
+(85, 4, 'up'),
+(82, 6, 'down'),
+(82, 4, 'down'),
+(82, 2, 'down');
 
 -- --------------------------------------------------------
 
@@ -342,7 +358,9 @@ INSERT INTO `review_post` (`post_id`, `student_id`, `rating`) VALUES
 (107, 113, 'up'),
 (117, 113, 'up'),
 (100, 113, 'down'),
-(116, 1, 'down');
+(116, 1, 'down'),
+(100, 82, 'up'),
+(100, 1, 'down');
 
 -- --------------------------------------------------------
 
@@ -412,7 +430,9 @@ INSERT INTO `subscribe` (`id`, `id_course`, `id_student`) VALUES
 (17, 6, 113),
 (18, 6, 113),
 (19, 6, 113),
-(20, 3, 1);
+(20, 3, 1),
+(21, 6, 113),
+(22, 6, 82);
 
 -- --------------------------------------------------------
 
@@ -442,7 +462,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `Fname`, `Lname`, `Date_Of_Bir
 (82, 'user2', 'password2', 'Jane', 'Smith', '1995-02-15', 'Female', 2, 'random.png'),
 (83, 'user3', 'password3', 'Alice', 'Johnson', '1988-11-20', 'Female', 1, 'random.png'),
 (84, 'user4', 'password4', 'Bob', 'Brown', '1985-06-30', 'Male', 2, 'random.png'),
-(85, 'user5', 'password5', 'Emma', 'Wilson', '1992-09-12', 'Female', 1, 'random.png'),
+(85, 'user5', 'password5', 'Emmaa', 'Wilson', '1992-09-12', 'Female', 1, ''),
 (86, 'user6', 'password6', 'Michael', 'Miller', '1989-03-25', 'Male', 1, 'random.png'),
 (87, 'user7', 'password7', 'Olivia', 'Jones', '1997-07-08', 'Female', 2, 'random.png'),
 (88, 'user8', 'password8', 'William', 'Lee', '1991-12-03', 'Male', 1, 'random.png'),
@@ -598,7 +618,7 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `denied`
 --
 ALTER TABLE `denied`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `featured`
@@ -610,19 +630,19 @@ ALTER TABLE `featured`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `pending`
 --
 ALTER TABLE `pending`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -634,7 +654,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `subscribe`
 --
 ALTER TABLE `subscribe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user`

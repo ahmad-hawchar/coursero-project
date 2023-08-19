@@ -24,7 +24,7 @@ require_once('connection.php')
       header('Location:homepage.php');
     }
     $id =$_SESSION["id"];
-    $query ="SELECT * from post where Id=$post and Id_t=$id";
+    $query ="SELECT * from post where Id=$post and Id_t=$id;";
     $res = mysqli_query($con, $query);
     if (mysqli_num_rows($res)==0) {
         echo "you don't have access to this post";
