@@ -22,7 +22,7 @@ else{
     ?>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
   <title>Edit Course</title>
  <link rel="stylesheet" href="createpost.css">
 </head>

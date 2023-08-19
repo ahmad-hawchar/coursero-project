@@ -16,7 +16,7 @@ require_once('connection.php')
 <body>
 
 
-    <?php
+    <?php 
     if(isset($_GET['post'])){
       $post=$_GET['post'];
     }
