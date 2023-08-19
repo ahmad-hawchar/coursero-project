@@ -18,7 +18,7 @@ $result=mysqli_query($con,$query);
 $result1=mysqli_query($con,$query1);
 $num=mysqli_num_rows($result);
 $num1=mysqli_num_rows($result1);
-if($num==1||$num1==1){
+if($num>0||$num1>0){
     header("location:showcourse2.php?course_id=$course_id");
 }
 }

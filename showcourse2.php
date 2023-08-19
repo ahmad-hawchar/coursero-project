@@ -8,7 +8,7 @@
 $id=$_SESSION['id'];
 
 if(!isset($_GET['course_id'])){
-    header("location:showcourses.php");
+    header("location:course-search.php");
 }
 else{
 $course_id=$_GET['course_id'];
@@ -18,7 +18,7 @@ $result=mysqli_query($con,$query);
 $result1=mysqli_query($con,$query1);
 $num=mysqli_num_rows($result);
 $num1=mysqli_num_rows($result1);
-if($num!=1&&$num1!=1){
+if($num<1 && $num1<1){
     header("location:showcourse.php?course_id=$course_id");
 }
  }
